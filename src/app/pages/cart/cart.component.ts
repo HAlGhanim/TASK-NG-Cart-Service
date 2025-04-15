@@ -20,8 +20,4 @@ export class CartComponent {
   getCart() {
     this.products = this.cartService.getCart();
   }
-
-  addToCart(product: Product) {
-    this.cartService.addToCart(product);
-  }
 }
