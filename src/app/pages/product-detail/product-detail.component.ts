@@ -18,17 +18,22 @@ export class ProductDetailComponent {
     private route: ActivatedRoute,
     private _cartService: CartService
   ) {}
+  ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.product = this.products.find((product) => product.id === id);
+  }
+
   addToCart() {
     if (this.product) {
       this._cartService.addToCart(this.product);
     }
   }
-  getCart() {
-    this._cartService.getCart();
-  }
 
-  ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.product = this.products.find((product) => product.id === id);
+  isAddDisabled(): boolean {
+    if (!this.product) return true;
+    const item = this._cartService
+      .getCart()
+      .find((i) => i.product.id === this.product!.id);
+    return item ? item.quantity >= this.product.stock : false;
   }
 }
