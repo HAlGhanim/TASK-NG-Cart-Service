@@ -1,3 +1,21 @@
 <div class="cart-container">
-  <h2>Your Cart 🛒</h2>
+  <h2 *ngIf="products && products.length > 0; else emptyCart">Your Cart 🛒</h2>
+
+  <ng-template #emptyCart>
+    <p>Your cart is empty.</p>
+  </ng-template>
+
+  <ul class="ul" *ngIf="products && products.length > 0">
+    <li *ngFor="let item of products">
+      <div class="cart-list">
+        <div>Name: {{ item.product.name }}</div>
+        <div>Price: {{ item.product.price }}</div>
+        <div>
+          Quantity: {{ item.quantity }}
+          <button (click)="addToCart(item.product)">+</button>
+          <!-- <button (click)="removeFromCart(item)">-</button> -->
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>

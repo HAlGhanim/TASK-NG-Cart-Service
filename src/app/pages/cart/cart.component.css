@@ -3,3 +3,10 @@
   text-align: center;
   color: #555;
 }
+
+.cart-list {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  justify-content: space-around;
+}

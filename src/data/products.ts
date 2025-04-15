@@ -7,6 +7,11 @@ export interface Product {
   stock: number;
 }
 
+export interface CartItem {
+  product: Product;
+  quantity: number;
+}
+
 export const PRODUCTS: Product[] = [
   {
     id: 1,
